@@ -16,6 +16,7 @@ public class AdventureUchiBehavior : MonoBehaviour
     private Transform trans;
     private bool groundContact;
     private float restartY;
+    private int collectionScore;
 
 
     
@@ -27,6 +28,7 @@ public class AdventureUchiBehavior : MonoBehaviour
         trans = GetComponent<Transform>();
         restartY = 10.0f;
         groundContact = true;
+        collectionScore = 0;
     }
 
     // Update is called once per frame
@@ -51,7 +53,7 @@ public class AdventureUchiBehavior : MonoBehaviour
             if (jumpValue > 0.0f && groundContact)
             {
                 moveVertical = jumpMagnitude;
-                Debug.Log(jumpMagnitude);
+                // Debug.Log(jumpMagnitude);
                 groundContact = false;
 
             }
@@ -63,6 +65,7 @@ public class AdventureUchiBehavior : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
+        
         // Deterimne if Uchi has landed
         if (collider.gameObject.CompareTag("Ground") && !groundContact)
         {
@@ -86,7 +89,7 @@ public class AdventureUchiBehavior : MonoBehaviour
 
     bool didUchiFallTooFar()
     {
-        Debug.Log(trans.position);
+        // Debug.Log(trans.position);
         if(trans.position.y < tooFar)
         {
             // Uchi fell too far
@@ -101,6 +104,15 @@ public class AdventureUchiBehavior : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Collectable"))
+        {
+            collectionScore++;
+            Destroy(collider.gameObject);
+            // Debug.Log(collectionScore);
         }
     }
 }

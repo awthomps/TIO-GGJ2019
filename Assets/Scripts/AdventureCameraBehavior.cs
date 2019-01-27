@@ -22,6 +22,6 @@ public class AdventureCameraBehavior : MonoBehaviour
         float y = subject.transform.position.y + yOffset;
         float z = cameraDistance;
         transform.position = new Vector3(x, y, z);
-        Debug.Log(transform.position);
+        // Debug.Log(transform.position);
     }
 }
