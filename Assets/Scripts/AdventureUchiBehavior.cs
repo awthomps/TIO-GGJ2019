@@ -10,6 +10,7 @@ public class AdventureUchiBehavior : MonoBehaviour
     public float maxSpeed = 10.0f;
     public float tooFar = -50.0f;
     public float jumpMagnitude = 600.0f;
+    public string homeSceneName;
     
 
     // Private Fields
@@ -97,8 +98,14 @@ public class AdventureUchiBehavior : MonoBehaviour
             // Set Uchi back to y = 0.0f for now
             trans.position = new Vector3(trans.position.x, restartY, trans.position.y);
             rb.velocity = new Vector2(0.0f, 0.0f);
+
+
+            // LOSE CONDITION
             Scene scene = SceneManager.GetActiveScene();
+
             SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
+
+
 
             return true;
         }
@@ -107,6 +114,9 @@ public class AdventureUchiBehavior : MonoBehaviour
             return false;
         }
     }
+
+
+    
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Collectable"))
@@ -115,5 +125,25 @@ public class AdventureUchiBehavior : MonoBehaviour
             Destroy(collider.gameObject);
             // Debug.Log(collectionScore);
         }
+
+        didUchiReachTheEnd(collider.gameObject);
+    }
+
+    void didUchiReachTheEnd(GameObject testObject)
+    {
+        //Perform Check for level completion
+        if (testObject.CompareTag("LevelEnd"))
+        {
+            Debug.Log("You finished the level!");
+            int money = PlayerPrefs.GetInt("Money");
+            money += collectionScore;
+            PlayerPrefs.SetInt("Money", money);
+            // TODO: display level finish
+
+            //Go back home!:
+            SceneManager.LoadScene(homeSceneName, LoadSceneMode.Single);
+
+        }
+
     }
 }
