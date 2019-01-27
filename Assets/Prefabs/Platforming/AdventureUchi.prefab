@@ -202,3 +202,4 @@ MonoBehaviour:
   maxSpeed: 10
   tooFar: -50
   jumpMagnitude: 600
+  homeSceneName: HomeUchi

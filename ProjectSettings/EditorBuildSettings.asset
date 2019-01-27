@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/HomeUchi.unity
+    guid: b95a1dbcce59b4d1a864c0aa5b885e6f
+  - enabled: 1
+    path: Assets/Scenes/AdventureOne.unity
+    guid: 05d6ca6c281a7c04194fb107efb80d0b
   m_configObjects: {}

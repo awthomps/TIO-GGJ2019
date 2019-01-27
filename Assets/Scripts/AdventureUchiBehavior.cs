@@ -10,6 +10,11 @@ public class AdventureUchiBehavior : MonoBehaviour
     public float maxSpeed = 10.0f;
     public float tooFar = -50.0f;
     public float jumpMagnitude = 600.0f;
+    public string homeSceneName;
+    public int yellowCoinValue = 1;
+    public int greenCoinValue = 5;
+    public int blueCoinValue = 10;
+    public int pinkCoinValue = 25;
     
 
     // Private Fields
@@ -97,8 +102,11 @@ public class AdventureUchiBehavior : MonoBehaviour
             // Set Uchi back to y = 0.0f for now
             trans.position = new Vector3(trans.position.x, restartY, trans.position.y);
             rb.velocity = new Vector2(0.0f, 0.0f);
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
+
+
+            // LOSE CONDITION
+            //Go back home!:
+            SceneManager.LoadScene(homeSceneName, LoadSceneMode.Single);
 
             return true;
         }
@@ -107,13 +115,57 @@ public class AdventureUchiBehavior : MonoBehaviour
             return false;
         }
     }
+
+
+    
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Collectable"))
+        GameObject colliderObject = collider.gameObject;
+        if (colliderObject.CompareTag("Collectable"))
         {
-            collectionScore++;
+            int incrementValue = 0;
+            switch(colliderObject.name)
+            {
+                case "YellowCoin":
+                    incrementValue = yellowCoinValue;
+                    break;
+                case "GreenCoin":
+                    incrementValue = greenCoinValue;
+                    break;
+                case "BlueCoin":
+                    incrementValue = blueCoinValue;
+                    break;
+                case "PinkCoin":
+                    incrementValue = pinkCoinValue;
+                    break;
+                default:
+                    incrementValue = 1;
+                    break;
+            }
+
+            collectionScore += incrementValue;
             Destroy(collider.gameObject);
             // Debug.Log(collectionScore);
         }
+
+        didUchiReachTheEnd(collider.gameObject);
+    }
+
+    void didUchiReachTheEnd(GameObject testObject)
+    {
+        //Perform Check for level completion
+        if (testObject.CompareTag("LevelEnd"))
+        {
+            // Debug.Log("You finished the level!");
+            int money = PlayerPrefs.GetInt("Money");
+            money += collectionScore;
+            PlayerPrefs.SetInt("Money", money);
+            // TODO: display level finish
+
+            //Go back home!:
+            SceneManager.LoadScene(homeSceneName, LoadSceneMode.Single);
+
+        }
+
     }
 }
