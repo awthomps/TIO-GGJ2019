@@ -25,6 +25,7 @@ public class UchiBehavior : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        movement.Normalize();
 
         rb.AddForce(movement * speed);
     }

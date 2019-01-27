@@ -6,6 +6,8 @@ public class UchiAnimationBehavior : MonoBehaviour
 {
     public float frameTime = 0.125f;
     public bool isGirl = false;
+    public int stillFrameSprite = 1;
+    public float stillFrameSpeed = 0.2f;
     public Sprite boy1;
     public Sprite boy2;
     public Sprite boy3;
@@ -65,15 +67,26 @@ public class UchiAnimationBehavior : MonoBehaviour
 
     void calculateFrame()
     {
+        float speed = parentRigidBody.velocity.magnitude;
         Sprite[] sprites = spriteMatrix[isGirl ? 1 : 0];
-        deltaTime += Time.deltaTime;
 
-        // Loop to allow possible multiple frames to pass
-        while(deltaTime >= frameTime)
+        if(speed > stillFrameSpeed)
         {
-            deltaTime -= frameTime;
-            currentSprite++;
-            currentSprite %= sprites.Length;
+            deltaTime += Time.deltaTime;
+
+            // Loop to allow possible multiple frames to pass
+            while(deltaTime >= frameTime)
+            {
+                deltaTime -= frameTime;
+                currentSprite++;
+                currentSprite %= sprites.Length;
+            }
+
+            
+        } else
+        {
+            // Use still frame:
+            currentSprite = stillFrameSprite;
         }
 
         // Set the sprite depending on the frame
