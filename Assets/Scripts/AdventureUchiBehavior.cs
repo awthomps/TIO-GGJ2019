@@ -24,9 +24,6 @@ public class AdventureUchiBehavior : MonoBehaviour
     private float restartY;
     private int collectionScore;
 
-
-    
-
     // Start is called before the first frame update
     void Start()
     {

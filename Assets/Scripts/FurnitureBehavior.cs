@@ -10,22 +10,59 @@ public class FurnitureBehavior : MonoBehaviour
 
     public GameObject Inventory;
 
-    private bool purchased;
     private bool placing;
 
     private int priceAmt;
     private string priceType;
 
+    private bool initialAdd;
+
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         addButton.onClick.AddListener(AttemptPurchase);
         removeButton.onClick.AddListener(RemoveFromHouse);
         placing = false;
+        initialAdd = true;
         // these colors will be used to control clickability (also see inventory behavior)
         SetButtonColors(Color.green, Color.red);
-        DeterminePrice();
-        addButton.GetComponentInChildren<UnityEngine.UI.Text>().text = priceAmt + " " + priceType;
+        // if it hasn't been stored or if the count of how many we have is zero
+        // (note that we could one day implement the ability to purchase multiple of the same thing) 
+        if (!PlayerPrefs.HasKey(this.name) || (PlayerPrefs.HasKey(this.name) && PlayerPrefs.GetInt(this.name) == 0))
+        {
+            DeterminePrice();
+            addButton.GetComponentInChildren<UnityEngine.UI.Text>().text = priceAmt + " " + priceType;
+        }
+        else if (PlayerPrefs.HasKey(this.name) && PlayerPrefs.GetInt(this.name) > 0)
+        {
+            initialAdd = false;
+            MarkAsPurchased();
+            ReturnToPosition();
+        }
+    }
+
+    // this is only called if
+    void ReturnToPosition ()
+    {
+        string[] positions = PlayerPrefs.GetString(this.name + "_POSITION").Split('_');
+        float x = 0.0f;
+        float y = 0.0f;
+        if (positions.Length < 2)
+        {
+            Debug.Log("Position recovery failure");
+            return;
+        }
+        else
+        {
+            float.TryParse(positions[0], out x);
+            float.TryParse(positions[1], out y);
+        }
+
+        AddToHouse();
+        furniture.GetComponent<RectTransform>().Translate(new Vector3(x, y, 0.0f));
+        //furniture.transform.position = new Vector3(x, y, 0.0f);
+        placing = false;
     }
 
     // categories: cute (green), gothic (blue), quirky (pink), regal (yellow)
@@ -66,17 +103,19 @@ public class FurnitureBehavior : MonoBehaviour
         if (priceType == "none" || priceAmt == 0)
         {
             Debug.Log("No price set yet!");
-            CompletePurchase();
+            PlayerPrefs.SetInt(this.name, 1);
+            MarkAsPurchased();
             return;
         }
         string walletName = priceType + "Coins";
         int funds = PlayerPrefs.GetInt(walletName);
         if (funds >= priceAmt)
         {
-            CompletePurchase();
             // update player prefs
             funds -= priceAmt;
             PlayerPrefs.SetInt(walletName, funds);
+            PlayerPrefs.SetInt(this.name, 1);
+            MarkAsPurchased();
         }
         else
         {
@@ -84,9 +123,8 @@ public class FurnitureBehavior : MonoBehaviour
         }
     }
 
-    void CompletePurchase()
+    void MarkAsPurchased()
     {
-        purchased = true;
         addButton.GetComponentInChildren<UnityEngine.UI.Text>().text = "add";
         addButton.onClick.RemoveListener(AttemptPurchase);
         addButton.onClick.AddListener(AddToHouse);
@@ -95,14 +133,17 @@ public class FurnitureBehavior : MonoBehaviour
     void AddToHouse()
     {
         // actually create the furniture object
-        CreateFurniture();
+        CreateFurniture(initialAdd);
         // update the button colors
         SetButtonColors(Color.red, Color.green);
-        // hide the inventory canvas and toggle its state
-        Inventory.SendMessage("ToggleCanvas");
+        if (initialAdd)
+        {
+            // hide the inventory canvas and toggle its state
+            Inventory.SendMessage("ToggleCanvas");
+        }
     }
 
-    void CreateFurniture ()
+    void CreateFurniture (bool firstPlacement)
     {
         // create a new game object and give it a canvas so that it can have an image
         furniture = new GameObject();
@@ -125,11 +166,14 @@ public class FurnitureBehavior : MonoBehaviour
         newRT.sizeDelta = new Vector2(2.0f, 2.0f);
         furniture.transform.localScale = new Vector2(adjustWidth, adjustHeight);
         // move the object by the negative of its current position in order to center it
-        newRT.Translate(-1 * newRT.position);
-        // move the object to where the mouse currently is
-        FollowMouse();
-        // until we have decided where the object should be, we are in the process of placing it
-        placing = true;
+        newRT.Translate(-1.0f * newRT.position);
+        if (firstPlacement)
+        {
+            // move the object to where the mouse currently is
+            FollowMouse();
+            // until we have decided where the object should be, we are in the process of placing it
+            placing = true;
+        }
     }
 
 
@@ -177,23 +221,32 @@ public class FurnitureBehavior : MonoBehaviour
         return true;
     }
 
+    void Place ()
+    {
+        placing = false;
+        RectTransform rt = this.GetComponent<RectTransform>();
+        string posString = rt.transform.position.x + "_" + rt.transform.position.y;
+        //string posString = this.transform.position.x + "_" + this.transform.position.y;
+        PlayerPrefs.SetString(this.name + "_POSITION", posString);
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (placing)
         {
             FollowMouse();
-        }
 
-        // 0 corresponds to the main mouse button
-        if (furniture && Input.GetMouseButtonDown(0))
-        {
-            if (CanPlace())
+            // 0 corresponds to the main mouse button
+            if (furniture && Input.GetMouseButtonDown(0))
             {
-                placing = false;
+                if (CanPlace())
+                {
+                    Place();
+                }
+                else
+                    Debug.Log("You can't place the object there!");
             }
-            else
-                Debug.Log("You can't place the object there!");
         }
     }
 }

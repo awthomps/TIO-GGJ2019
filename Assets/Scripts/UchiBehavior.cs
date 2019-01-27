@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UchiBehavior : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rb;
+
+    public string LevelOneSceneName;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +19,7 @@ public class UchiBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -28,5 +31,13 @@ public class UchiBehavior : MonoBehaviour
         movement.Normalize();
 
         rb.AddForce(movement * speed);
+    }
+
+    void OnTriggerEnter2D(Collider2D otherCollider)
+    {
+        // Start the level associated with the entry portal you just entered
+        // for now, just start level one
+        if (otherCollider.gameObject.CompareTag("LevelStart"))
+            SceneManager.LoadScene(LevelOneSceneName, LoadSceneMode.Single);
     }
 }
