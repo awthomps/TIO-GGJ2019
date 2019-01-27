@@ -92,9 +92,44 @@ public class InventoryBehavior : MonoBehaviour
     {
         canvas.enabled = !canvas.enabled;
         if (canvas.enabled)
+        {
             Camera.main.cullingMask = 1 << LayerMask.NameToLayer("Menu");
+            EnableAllButtons();
+        }
         else
+        {
             Camera.main.cullingMask = 1 << LayerMask.NameToLayer("Default");
+            DisableAllButtons();
+        }
+    }
+
+    void EnableAllButtons ()
+    {
+        SetButtonStatus(true);
+    }
+
+    void DisableAllButtons ()
+    {
+        SetButtonStatus(false);
+    }
+
+    void SetButtonStatus (bool status)
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            UnityEngine.UI.Button[] buttons = inventory[i].GetComponentsInChildren<UnityEngine.UI.Button>();
+            for (int j = 0; j < buttons.Length; j++)
+            {
+                buttons[j].enabled = status;
+                // even if we want buttons to be enabled, we still want to turn off the red ones
+                if (status == true)
+                {
+                    Color color = buttons[j].GetComponent<UnityEngine.UI.Image>().color;
+                    if (color.Equals(Color.red)) { buttons[j].enabled = false; }
+                }
+
+            }
+        }
     }
 
 }
