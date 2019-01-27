@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9c1c529bc31f6a84ca00a3c90da7b939, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b185ed111360414abad1eed413d3904, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,10 +94,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frameTime: 0.125
   isGirl: 1
+  stillFrameSpeed: 0.2
+  boyStand: {fileID: 21300000, guid: 6c86ace22145e0b4d818893d54c1f146, type: 3}
   boy1: {fileID: 21300000, guid: 0e5b55e4d3140b1499cca111ced4cbef, type: 3}
   boy2: {fileID: 21300000, guid: 1d104ce343198944baed571d67795b6c, type: 3}
   boy3: {fileID: 21300000, guid: dd002966a4505b54eb194a8737be27e5, type: 3}
   boy4: {fileID: 21300000, guid: be4e01c570b39b24c9d2e70e4b462b7e, type: 3}
+  girlStand: {fileID: 21300000, guid: 1b185ed111360414abad1eed413d3904, type: 3}
   girl1: {fileID: 21300000, guid: 84596c30addcfe346ad4b4a964cca882, type: 3}
   girl2: {fileID: 21300000, guid: 9c1c529bc31f6a84ca00a3c90da7b939, type: 3}
   girl3: {fileID: 21300000, guid: b03ee1cd9bb16154285d32e072fef96a, type: 3}

@@ -544,6 +544,12 @@ PrefabInstance:
       propertyPath: isGirl
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 831030660388817921, guid: 1da673e29b1f65a4b854e5346a8cd1cc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b185ed111360414abad1eed413d3904,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1da673e29b1f65a4b854e5346a8cd1cc, type: 3}
 --- !u!1001 &1234450607

@@ -6,12 +6,13 @@ public class UchiAnimationBehavior : MonoBehaviour
 {
     public float frameTime = 0.125f;
     public bool isGirl = false;
-    public int stillFrameSprite = 1;
     public float stillFrameSpeed = 0.2f;
+    public Sprite boyStand;
     public Sprite boy1;
     public Sprite boy2;
     public Sprite boy3;
     public Sprite boy4;
+    public Sprite girlStand;
     public Sprite girl1;
     public Sprite girl2;
     public Sprite girl3;
@@ -81,16 +82,16 @@ public class UchiAnimationBehavior : MonoBehaviour
                 currentSprite++;
                 currentSprite %= sprites.Length;
             }
+            // Set the sprite depending on the frame
+            sr.sprite = sprites[currentSprite];
 
-            
         } else
         {
             // Use still frame:
-            currentSprite = stillFrameSprite;
+            sr.sprite = isGirl ? girlStand : boyStand;
         }
 
-        // Set the sprite depending on the frame
-        sr.sprite = sprites[currentSprite];
+        
 
         determineDirection();
 
@@ -101,15 +102,22 @@ public class UchiAnimationBehavior : MonoBehaviour
         float xSpeed = parentRigidBody.velocity.x;
         if(xSpeed > 0.0f)
         {
+            
             // Right
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1.0f * (getStillFrameModifier()), 1.0f, 1.0f);
         } else if(xSpeed < 0.0f)
         {
             // Left
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1.0f * (getStillFrameModifier()), 1.0f, 1.0f);
         } else
         {
             // Neither, so no change
         }
+    }
+
+    float getStillFrameModifier()
+    {
+        float speed = parentRigidBody.velocity.magnitude;
+        return (speed > stillFrameSpeed) ? 1.0f : -1.0f;
     }
 }
