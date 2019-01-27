@@ -11,10 +11,6 @@ public class AdventureUchiBehavior : MonoBehaviour
     public float tooFar = -50.0f;
     public float jumpMagnitude = 600.0f;
     public string homeSceneName;
-    public int yellowCoinValue = 1;
-    public int greenCoinValue = 5;
-    public int blueCoinValue = 10;
-    public int pinkCoinValue = 25;
     
 
     // Private Fields
@@ -22,7 +18,10 @@ public class AdventureUchiBehavior : MonoBehaviour
     private Transform trans;
     private bool groundContact;
     private float restartY;
-    private int collectionScore;
+    private int yellowCoins;
+    private int greenCoins;
+    private int blueCoins;
+    private int pinkCoins;
 
 
     
@@ -34,8 +33,11 @@ public class AdventureUchiBehavior : MonoBehaviour
         trans = GetComponent<Transform>();
         restartY = 10.0f;
         groundContact = true;
-        collectionScore = 0;
-    }
+        yellowCoins = 0;
+        greenCoins = 0;
+        blueCoins = 0;
+        pinkCoins = 0;
+}
 
     // Update is called once per frame
     void Update()
@@ -127,23 +129,22 @@ public class AdventureUchiBehavior : MonoBehaviour
             switch(colliderObject.name)
             {
                 case "YellowCoin":
-                    incrementValue = yellowCoinValue;
+                    yellowCoins++;
                     break;
                 case "GreenCoin":
-                    incrementValue = greenCoinValue;
+                    greenCoins++;
                     break;
                 case "BlueCoin":
-                    incrementValue = blueCoinValue;
+                    blueCoins++;
                     break;
                 case "PinkCoin":
-                    incrementValue = pinkCoinValue;
+                    pinkCoins++;
                     break;
                 default:
-                    incrementValue = 1;
+                    // nothing
                     break;
             }
-
-            collectionScore += incrementValue;
+            
             Destroy(collider.gameObject);
             // Debug.Log(collectionScore);
         }
@@ -157,10 +158,15 @@ public class AdventureUchiBehavior : MonoBehaviour
         if (testObject.CompareTag("LevelEnd"))
         {
             // Debug.Log("You finished the level!");
-            int money = PlayerPrefs.GetInt("Money");
-            money += collectionScore;
-            PlayerPrefs.SetInt("Money", money);
-            // TODO: display level finish
+            int storeYellowCoins = PlayerPrefs.GetInt("YellowCoins") + yellowCoins;
+            int storeGreenCoins = PlayerPrefs.GetInt("GreenCoins") + greenCoins;
+            int storeBlueCoins = PlayerPrefs.GetInt("BlueCoins") + blueCoins;
+            int storePinkCoins = PlayerPrefs.GetInt("PinkCoins") + pinkCoins;
+            
+            PlayerPrefs.SetInt("YellowCoins", storeYellowCoins);
+            PlayerPrefs.SetInt("GreenCoins", storeGreenCoins);
+            PlayerPrefs.SetInt("BlueCoins", storeBlueCoins);
+            PlayerPrefs.SetInt("PinkCoins", storePinkCoins);
 
             //Go back home!:
             SceneManager.LoadScene(homeSceneName, LoadSceneMode.Single);

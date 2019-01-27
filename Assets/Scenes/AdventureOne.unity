@@ -534,6 +534,11 @@ PrefabInstance:
       propertyPath: maxSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7825286777431504610, guid: 1da673e29b1f65a4b854e5346a8cd1cc,
+        type: 3}
+      propertyPath: speed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 9170870408588455436, guid: 1da673e29b1f65a4b854e5346a8cd1cc,
         type: 3}
       propertyPath: frameTime
@@ -903,6 +908,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eacfa190fecca7a46b2751ac51cc1968, type: 3}
+--- !u!1 &1727962276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7971875318970033242, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4533907773541710854}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1780493002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1394,11 +1405,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4533907774645617277, guid: f4f4f149a7b0beb489d86cc05633bd0d,
-        type: 3}
-      propertyPath: m_TargetDisplay
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
         type: 3}
       propertyPath: subject
@@ -1406,8 +1412,58 @@ PrefabInstance:
       objectReference: {fileID: 1330743606}
     - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
         type: 3}
-      propertyPath: xOffset
-      value: 7
+      propertyPath: zoomy0
+      value: 
+      objectReference: {fileID: 21300000, guid: aae838446a93c6e438afcc9e43101834,
+        type: 3}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: zoomy1
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ca0b53beb255ed43a7a5d346a026188,
+        type: 3}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: zoomy2
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a5199a9baffdcc42a79ebbe175af3ea,
+        type: 3}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: zoomy3
+      value: 
+      objectReference: {fileID: 21300000, guid: 438a0bf4af9b8174d991ba51526aa114,
+        type: 3}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: zoomy4
+      value: 
+      objectReference: {fileID: 21300000, guid: ee5c55d36779ce34e92db69e87ae711c,
+        type: 3}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: zoomyRenderer
+      value: 
+      objectReference: {fileID: 1727962276}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: zoomySpeed
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: startZoomy
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533907774645617275, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: endZoomy
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 498530452307616949, guid: f4f4f149a7b0beb489d86cc05633bd0d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4f4f149a7b0beb489d86cc05633bd0d, type: 3}
