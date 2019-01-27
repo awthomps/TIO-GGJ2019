@@ -10,16 +10,86 @@ public class FurnitureBehavior : MonoBehaviour
 
     public GameObject Inventory;
 
+    private bool purchased;
     private bool placing;
+
+    private int priceAmt;
+    private string priceType;
 
     // Start is called before the first frame update
     void Start()
     {
-        addButton.onClick.AddListener(AddToHouse);
+        addButton.onClick.AddListener(AttemptPurchase);
         removeButton.onClick.AddListener(RemoveFromHouse);
         placing = false;
         // these colors will be used to control clickability (also see inventory behavior)
         SetButtonColors(Color.green, Color.red);
+        DeterminePrice();
+        addButton.GetComponentInChildren<UnityEngine.UI.Text>().text = priceAmt + " " + priceType;
+    }
+
+    // categories: cute (green), gothic (blue), quirky (pink), regal (yellow)
+    void DeterminePrice ()
+    {
+        priceType = "none";
+        priceAmt = 0;
+        string spriteName = this.GetComponent<UnityEngine.UI.Image>().sprite.name;
+        string[] nameSplit = spriteName.Split('_');
+        if (nameSplit.Length < 2) { return;  }
+
+        string category = nameSplit[0];
+        string item = nameSplit[1];
+
+        if (category.Equals("cute"))
+            priceType = "Green";
+        else if (category.Equals("gothic"))
+            priceType = "Blue";
+        else if (category.Equals("quirky"))
+            priceType = "Pink";
+        else if (category.Equals("regal"))
+            priceType = "Yellow";
+        if (item.Equals("chair"))
+            priceAmt = 1;
+        else if (item.Equals("desk"))
+            priceAmt = 2;
+        else if (item.Equals("bed"))
+            priceAmt = 3;
+        else if (item.Equals("special"))
+            priceAmt = 4;
+    }
+
+    // wallets: YellowCoins, BlueCoins, GreenCoins, PinkCoins
+    void AttemptPurchase ()
+    {
+        // block this in an "if (CanPurchase()), which compares against price
+        // else { Debug.Log("You can't afford this furniture!"); }
+        if (priceType == "none" || priceAmt == 0)
+        {
+            Debug.Log("No price set yet!");
+            CompletePurchase();
+            return;
+        }
+        string walletName = priceType + "Coins";
+        int funds = PlayerPrefs.GetInt(walletName);
+        if (funds >= priceAmt)
+        {
+            CompletePurchase();
+            // update player prefs
+            funds -= priceAmt;
+            PlayerPrefs.SetInt(walletName, funds);
+        }
+        else
+        {
+            Debug.Log("You cannot afford this piece of furniture!");
+        }
+    }
+
+    void CompletePurchase()
+    {
+        purchased = true;
+        addButton.GetComponentInChildren<UnityEngine.UI.Text>().text = "add";
+        addButton.onClick.RemoveListener(AttemptPurchase);
+        addButton.onClick.AddListener(AddToHouse);
     }
 
     void AddToHouse()
