@@ -10,6 +10,7 @@ public class AdventureUchiBehavior : MonoBehaviour
     public float maxSpeed = 10.0f;
     public float tooFar = -50.0f;
     public float jumpMagnitude = 600.0f;
+    
 
     // Private Fields
     private Rigidbody2D rb;
