@@ -112,7 +112,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &357931079
+--- !u!1 &769738229
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,22 +120,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 357931081}
-  - component: {fileID: 357931080}
+  - component: {fileID: 769738231}
+  - component: {fileID: 769738230}
   m_Layer: 0
-  m_Name: CutsceneTheme
+  m_Name: CutSceneTheme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!82 &357931080
+--- !u!82 &769738230
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357931079}
+  m_GameObject: {fileID: 769738229}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -225,13 +225,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &357931081
+--- !u!4 &769738231
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357931079}
+  m_GameObject: {fileID: 769738229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2089698, y: 0.16276872, z: 1.6567608}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -464,8 +464,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8071056045196216761, guid: 403bef9315eaf4a4086d4d1964c5080e,
         type: 3}
+      propertyPath: scrollForce
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071056045196216761, guid: 403bef9315eaf4a4086d4d1964c5080e,
+        type: 3}
       propertyPath: CutSceneTheme
       value: 
-      objectReference: {fileID: 357931080}
+      objectReference: {fileID: 769738230}
+    - target: {fileID: 8071056044231985281, guid: 403bef9315eaf4a4086d4d1964c5080e,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 403bef9315eaf4a4086d4d1964c5080e, type: 3}
