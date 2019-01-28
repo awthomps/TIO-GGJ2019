@@ -20,12 +20,21 @@ public class EndCreditDetectorBehavior : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        float jumpValue = Input.GetAxis("Jump");
+        if (jumpValue > 0.0f)
+        {
+            // Skip cutscene
+            SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Reached end of CutScene");
         if(collision.gameObject.CompareTag("EndCutScene"))
         {
-            //Go back home!:
             SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
         }
     }

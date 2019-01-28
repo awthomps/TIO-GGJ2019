@@ -262,9 +262,9 @@ MonoBehaviour:
   yOffset: 1
   xOffset: 7
   zoomiesEnabled: 1
-  zoomyRange: 300
+  zoomyRange: 20
   zoomyRenderer: {fileID: 0}
-  zoomySpeed: 2
+  zoomySpeed: 300
   zoomy0: {fileID: 0}
   zoomy1: {fileID: 0}
   zoomy2: {fileID: 0}
