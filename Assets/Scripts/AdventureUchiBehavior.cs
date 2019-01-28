@@ -125,7 +125,6 @@ public class AdventureUchiBehavior : MonoBehaviour
         GameObject colliderObject = collider.gameObject;
         if (colliderObject.CompareTag("Collectable"))
         {
-            int incrementValue = 0;
             switch(colliderObject.name)
             {
                 case "YellowCoin":

@@ -261,6 +261,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3248964405776856203, guid: ba4b3fd5e921230489c1cdf4b59f4123,
+        type: 3}
+      propertyPath: nextScene
+      value: HomeUchi
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba4b3fd5e921230489c1cdf4b59f4123, type: 3}
 --- !u!1001 &8071056044788716822
@@ -328,6 +333,16 @@ PrefabInstance:
     - target: {fileID: 8071056045196216742, guid: 403bef9315eaf4a4086d4d1964c5080e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071056045196216761, guid: 403bef9315eaf4a4086d4d1964c5080e,
+        type: 3}
+      propertyPath: scrollForce
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071056044231985281, guid: 403bef9315eaf4a4086d4d1964c5080e,
+        type: 3}
+      propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
