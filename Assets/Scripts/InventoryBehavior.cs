@@ -19,10 +19,10 @@ public class InventoryBehavior : MonoBehaviour
     /* Resources */
     // item0 is the prefab we'll be making copies of
     public Texture2D item1;
-    /*public Texture2D item2;
+    public Texture2D item2;
     public Texture2D item3;
-    public Texture2D item4;
-    public Texture2D item5;
+    //public Texture2D item4;
+    /*public Texture2D item5;
     public Texture2D item6;
     public Texture2D item7;
     public Texture2D item8;

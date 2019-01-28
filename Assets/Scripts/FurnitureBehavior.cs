@@ -20,7 +20,6 @@ public class FurnitureBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteAll();
         addButton.onClick.AddListener(AttemptPurchase);
         removeButton.onClick.AddListener(RemoveFromHouse);
         placing = false;
@@ -42,7 +41,6 @@ public class FurnitureBehavior : MonoBehaviour
         }
     }
 
-    // this is only called if
     void ReturnToPosition ()
     {
         string[] positions = PlayerPrefs.GetString(this.name + "_POSITION").Split('_');
@@ -88,11 +86,11 @@ public class FurnitureBehavior : MonoBehaviour
         if (item.Equals("chair"))
             priceAmt = 1;
         else if (item.Equals("desk"))
-            priceAmt = 2;
+            priceAmt = 10;
         else if (item.Equals("bed"))
-            priceAmt = 3;
+            priceAmt = 15;
         else if (item.Equals("special"))
-            priceAmt = 4;
+            priceAmt = 20;
     }
 
     // wallets: YellowCoins, BlueCoins, GreenCoins, PinkCoins
@@ -120,6 +118,7 @@ public class FurnitureBehavior : MonoBehaviour
         else
         {
             Debug.Log("You cannot afford this piece of furniture!");
+            Debug.Log("You have: " + funds);
         }
     }
 
