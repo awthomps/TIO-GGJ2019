@@ -1314,6 +1314,66 @@ PrefabInstance:
       propertyPath: item3
       value: 
       objectReference: {fileID: 2800000, guid: 28514143396824bf69a52a22465ddc31, type: 3}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: item4
+      value: 
+      objectReference: {fileID: 2800000, guid: 06a790580b010409895c8ae6174b754a, type: 3}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: item5
+      value: 
+      objectReference: {fileID: 2800000, guid: f6fd819b7ec7a4272ba5c9084561c40a, type: 3}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: item6
+      value: 
+      objectReference: {fileID: 2800000, guid: 457859813a6e34fb995868933ae7235e, type: 3}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: item7
+      value: 
+      objectReference: {fileID: 2800000, guid: 8aff7efb4df9846c4b8d91c137d500d8, type: 3}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name1
+      value: gothic_bed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name2
+      value: gothic_special
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name3
+      value: cute_chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name4
+      value: cute_table
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name5
+      value: cute_bed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name6
+      value: cute_special
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name7
+      value: cute_special
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176044118483455399, guid: 58b998aba467234478574fc7efcd364e,
+        type: 3}
+      propertyPath: name0
+      value: gothic_table
+      objectReference: {fileID: 0}
     - target: {fileID: 2176044118501067297, guid: 58b998aba467234478574fc7efcd364e,
         type: 3}
       propertyPath: m_Sprite

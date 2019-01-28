@@ -20,6 +20,8 @@ public class FurnitureBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // use this to reset furniture
+        // PlayerPrefs.DeleteAll();
         addButton.onClick.AddListener(AttemptPurchase);
         removeButton.onClick.AddListener(RemoveFromHouse);
         placing = false;
@@ -66,9 +68,10 @@ public class FurnitureBehavior : MonoBehaviour
     // categories: cute (green), gothic (blue), quirky (pink), regal (yellow)
     void DeterminePrice ()
     {
-        priceType = "none";
-        priceAmt = 0;
+        priceType = "Yellow";
+        priceAmt = 5;
         string spriteName = this.GetComponent<UnityEngine.UI.Image>().sprite.name;
+        Debug.Log(this.GetComponent<UnityEngine.UI.Image>().sprite.name);
         string[] nameSplit = spriteName.Split('_');
         if (nameSplit.Length < 2) { return;  }
 
