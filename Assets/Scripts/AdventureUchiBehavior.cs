@@ -23,9 +23,6 @@ public class AdventureUchiBehavior : MonoBehaviour
     private int blueCoins;
     private int pinkCoins;
 
-
-    
-
     // Start is called before the first frame update
     void Start()
     {
