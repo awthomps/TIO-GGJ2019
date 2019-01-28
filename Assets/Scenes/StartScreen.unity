@@ -509,7 +509,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Uchi's Home Designer
+  m_Text: Uchi Home Designer
 --- !u!222 &1890302646
 CanvasRenderer:
   m_ObjectHideFlags: 0
