@@ -3,7 +3,13 @@ guid: dbe2d550b6fc9e945b348ce78d9d9abc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - AdventureOneTheme: {fileID: 8088941645731230871, guid: 3025a6fd1a7ee4db68899e6ebb63c569,
+      type: 3}
+  - CoinPickupSound: {fileID: 3897324808425119408, guid: b8fb4533ebc4c4fa9954fbe57da8fde2,
+      type: 3}
+  - VictoryDoorSound: {fileID: 5688080314800505398, guid: 29197e82e197e4c24829a4df52c0119e,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

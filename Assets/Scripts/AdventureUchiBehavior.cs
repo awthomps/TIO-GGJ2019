@@ -13,6 +13,8 @@ public class AdventureUchiBehavior : MonoBehaviour
     public string homeSceneName;
 
     public AudioSource AdventureOneTheme;
+    public AudioSource CoinPickupSound;
+    public AudioSource VictoryDoorSound;
 
     // Private Fields
     private Rigidbody2D rb;
@@ -125,6 +127,7 @@ public class AdventureUchiBehavior : MonoBehaviour
         GameObject colliderObject = collider.gameObject;
         if (colliderObject.CompareTag("Collectable"))
         {
+            CoinPickupSound.Play();
             switch(colliderObject.name)
             {
                 case "YellowCoin":
@@ -156,6 +159,7 @@ public class AdventureUchiBehavior : MonoBehaviour
         //Perform Check for level completion
         if (testObject.CompareTag("LevelEnd"))
         {
+            VictoryDoorSound.Play();
             // Debug.Log("You finished the level!");
             int storeYellowCoins = PlayerPrefs.GetInt("YellowCoins") + yellowCoins;
             int storeGreenCoins = PlayerPrefs.GetInt("GreenCoins") + greenCoins;

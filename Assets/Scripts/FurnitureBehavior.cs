@@ -68,10 +68,9 @@ public class FurnitureBehavior : MonoBehaviour
     // categories: cute (green), gothic (blue), quirky (pink), regal (yellow)
     void DeterminePrice ()
     {
-        priceType = "Yellow";
-        priceAmt = 5;
+        priceType = "none";
+        priceAmt = 0;
         string spriteName = this.GetComponent<UnityEngine.UI.Image>().sprite.name;
-        Debug.Log(this.GetComponent<UnityEngine.UI.Image>().sprite.name);
         string[] nameSplit = spriteName.Split('_');
         if (nameSplit.Length < 2) { return;  }
 
