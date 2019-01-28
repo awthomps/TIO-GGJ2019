@@ -391,7 +391,7 @@ PrefabInstance:
     - target: {fileID: 3248964405776856203, guid: ba4b3fd5e921230489c1cdf4b59f4123,
         type: 3}
       propertyPath: nextScene
-      value: HomeUchi
+      value: SecondCutscene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba4b3fd5e921230489c1cdf4b59f4123, type: 3}
