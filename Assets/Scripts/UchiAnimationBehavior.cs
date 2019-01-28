@@ -5,7 +5,6 @@ using UnityEngine;
 public class UchiAnimationBehavior : MonoBehaviour
 {
     public float frameTime = 0.125f;
-    public bool isGirl = false;
     public float stillFrameSpeed = 0.2f;
     public Sprite boyStand;
     public Sprite boy1;
@@ -24,6 +23,7 @@ public class UchiAnimationBehavior : MonoBehaviour
     private Sprite[][] spriteMatrix;
     private int currentSprite;
     private float deltaTime = 0;
+    private bool isGirl = false;
 
 
     // Start is called before the first frame update
@@ -32,6 +32,11 @@ public class UchiAnimationBehavior : MonoBehaviour
         parentRigidBody = GetComponentInParent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
 
+        string gender = PlayerPrefs.GetString("Gender");
+        if(gender.Equals("girl"))
+        {
+            isGirl = true;
+        }
 
         initializeSprites();
     }
