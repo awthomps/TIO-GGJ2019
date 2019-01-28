@@ -9,17 +9,20 @@ public class UchiBehavior : MonoBehaviour
     private Rigidbody2D rb;
 
     public string LevelOneSceneName;
+    public AudioSource UchiHomeTheme;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+       
+        UchiHomeTheme.loop = true;
+        UchiHomeTheme.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void FixedUpdate()

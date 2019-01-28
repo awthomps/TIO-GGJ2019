@@ -11,7 +11,8 @@ public class AdventureUchiBehavior : MonoBehaviour
     public float tooFar = -50.0f;
     public float jumpMagnitude = 600.0f;
     public string homeSceneName;
-    
+
+    public AudioSource AdventureOneTheme;
 
     // Private Fields
     private Rigidbody2D rb;
@@ -26,6 +27,8 @@ public class AdventureUchiBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AdventureOneTheme.loop = true;
+        AdventureOneTheme.Play();
         rb = GetComponent<Rigidbody2D>();
         trans = GetComponent<Transform>();
         restartY = 10.0f;
