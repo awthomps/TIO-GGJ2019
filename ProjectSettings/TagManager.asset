@@ -8,6 +8,7 @@ TagManager:
   - Collectable
   - LevelEnd
   - LevelStart
+  - EndCutScene
   layers:
   - Default
   - TransparentFX
