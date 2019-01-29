@@ -209,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   addButton: {fileID: 4146077547637099587}
   removeButton: {fileID: 4146077549530072239}
+  Inventory: {fileID: 0}
 --- !u!1 &4146077548364689498
 GameObject:
   m_ObjectHideFlags: 0

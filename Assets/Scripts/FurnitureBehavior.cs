@@ -10,6 +10,7 @@ public class FurnitureBehavior : MonoBehaviour
 
     public GameObject Inventory;
 
+    private bool canReAdd;
     private bool placing;
 
     private int priceAmt;
@@ -24,6 +25,7 @@ public class FurnitureBehavior : MonoBehaviour
         // PlayerPrefs.DeleteAll();
         addButton.onClick.AddListener(AttemptPurchase);
         removeButton.onClick.AddListener(RemoveFromHouse);
+        canReAdd = false;
         placing = false;
         initialAdd = true;
         // these colors will be used to control clickability (also see inventory behavior)
@@ -39,7 +41,11 @@ public class FurnitureBehavior : MonoBehaviour
         {
             initialAdd = false;
             MarkAsPurchased();
-            ReturnToPosition();
+            // if the item was purchased and also placed in the house, put it back
+            if (PlayerPrefs.HasKey(this.name + "_POSITION"))
+                ReturnToPosition();
+            else
+                canReAdd = true;
         }
     }
 
@@ -61,6 +67,7 @@ public class FurnitureBehavior : MonoBehaviour
 
         AddToHouse();
         furniture.GetComponent<RectTransform>().Translate(new Vector3(x, y, 0.0f));
+        Debug.Log("Placing at: " + x + ", " + y);
         //furniture.transform.position = new Vector3(x, y, 0.0f);
         placing = false;
     }
@@ -86,8 +93,8 @@ public class FurnitureBehavior : MonoBehaviour
         else if (category.Equals("regal"))
             priceType = "Yellow";
         if (item.Equals("chair"))
-            priceAmt = 1;
-        else if (item.Equals("desk"))
+            priceAmt = 5;
+        else if (item.Equals("table"))
             priceAmt = 10;
         else if (item.Equals("bed"))
             priceAmt = 15;
@@ -114,13 +121,16 @@ public class FurnitureBehavior : MonoBehaviour
             // update player prefs
             funds -= priceAmt;
             PlayerPrefs.SetInt(walletName, funds);
-            PlayerPrefs.SetInt(this.name, 1);
             MarkAsPurchased();
         }
         else
         {
             Debug.Log("You cannot afford this piece of furniture!");
             Debug.Log("You have: " + funds);
+            Debug.Log("Blue: " + PlayerPrefs.GetInt("BlueCoins"));
+            Debug.Log("Green: " + PlayerPrefs.GetInt("GreenCoins"));
+            Debug.Log("Yellow: " + PlayerPrefs.GetInt("YellowCoins"));
+            Debug.Log("Pink: " + PlayerPrefs.GetInt("PinkCoins"));
         }
     }
 
@@ -129,6 +139,7 @@ public class FurnitureBehavior : MonoBehaviour
         addButton.GetComponentInChildren<UnityEngine.UI.Text>().text = "add";
         addButton.onClick.RemoveListener(AttemptPurchase);
         addButton.onClick.AddListener(AddToHouse);
+        PlayerPrefs.SetInt(this.name, 1);
     }
 
     void AddToHouse()
@@ -137,11 +148,12 @@ public class FurnitureBehavior : MonoBehaviour
         CreateFurniture(initialAdd);
         // update the button colors
         SetButtonColors(Color.red, Color.green);
-        if (initialAdd)
+        if (initialAdd || canReAdd)
         {
             // hide the inventory canvas and toggle its state
             Inventory.SendMessage("ToggleCanvas");
         }
+        canReAdd = false;
     }
 
     void CreateFurniture (bool firstPlacement)
@@ -168,7 +180,7 @@ public class FurnitureBehavior : MonoBehaviour
         furniture.transform.localScale = new Vector2(adjustWidth, adjustHeight);
         // move the object by the negative of its current position in order to center it
         newRT.Translate(-1.0f * newRT.position);
-        if (firstPlacement)
+        if (firstPlacement || canReAdd)
         {
             // move the object to where the mouse currently is
             FollowMouse();
@@ -182,6 +194,10 @@ public class FurnitureBehavior : MonoBehaviour
     {
         Object.Destroy(furniture);
         SetButtonColors(Color.green, Color.red);
+        addButton.enabled = true;
+        canReAdd = true;
+        // removing from the house
+        PlayerPrefs.DeleteKey(this.name + "_POSITION");
     }
 
     void SetButtonColors (Color addColor, Color removeColor)
@@ -225,9 +241,10 @@ public class FurnitureBehavior : MonoBehaviour
     void Place ()
     {
         placing = false;
-        RectTransform rt = this.GetComponent<RectTransform>();
+        RectTransform rt = furniture.GetComponent<RectTransform>();
         string posString = rt.transform.position.x + "_" + rt.transform.position.y;
-        //string posString = this.transform.position.x + "_" + this.transform.position.y;
+        //string posString = this.gameObject.transform.position.x + "_" + this.gameObject.transform.position.y;
+        Debug.Log(posString);
         PlayerPrefs.SetString(this.name + "_POSITION", posString);
     }
 

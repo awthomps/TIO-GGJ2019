@@ -42,8 +42,7 @@ public class InventoryBehavior : MonoBehaviour
     void CreateSprites()
     {
         sprites = new Sprite[NumItems - 1];
-        Sprite newSprite;
-        Rect newRect = new Rect(0.0f, 0.0f, item1.width, item1.height);
+        Rect newRect = new Rect(0.0f, 0.0f, 400.0f, 400.0f);
         sprites[0] = Sprite.Create(item1, newRect, new Vector2(0.5f, 0.5f));
         sprites[1] = Sprite.Create(item2, newRect, new Vector2(0.5f, 0.5f));
         sprites[2] = Sprite.Create(item3, newRect, new Vector2(0.5f, 0.5f));

@@ -128,27 +128,16 @@ public class AdventureUchiBehavior : MonoBehaviour
         if (colliderObject.CompareTag("Collectable"))
         {
             CoinPickupSound.Play();
-            switch(colliderObject.name)
-            {
-                case "YellowCoin":
-                    yellowCoins++;
-                    break;
-                case "GreenCoin":
-                    greenCoins++;
-                    break;
-                case "BlueCoin":
-                    blueCoins++;
-                    break;
-                case "PinkCoin":
-                    pinkCoins++;
-                    break;
-                default:
-                    // nothing
-                    break;
-            }
+            if (colliderObject.name.Contains("YellowCoin"))
+                yellowCoins++;
+            else if (colliderObject.name.Contains("GreenCoin"))
+                greenCoins++;
+            else if (colliderObject.name.Contains("BlueCoin"))
+                blueCoins++;
+            else if (colliderObject.name.Contains("PinkCoin"))
+                pinkCoins++;
             
             Destroy(collider.gameObject);
-            // Debug.Log(collectionScore);
         }
 
         didUchiReachTheEnd(collider.gameObject);
